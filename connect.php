@@ -1,17 +1,16 @@
 <?php 
 
-$HOSTNAME = 'localhost';
-$USERNAME  = 'root';
-$PASSWORD = 'Jaqueline12@';
-$DATABASE = 'signupforms';
+$HOSTNAME = "localhost";
+$USERNAME  = "root";
+$PASSWORD = "";
+$DATABASE = "signupforms";
 
 $conn = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASE);
 
-if($conn) {
-      echo "Connection succesful!"; 
+if($conn){
+      echo "Connected successfully";       
 } else {
-      die(mysqli_error($conn));
+      die("Connection failed : " .mysqli_connect_error($conn));
 }
-
 
 ?>
