@@ -3,6 +3,18 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     include "connect.php";
 
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $sql = "insert into `registration`(username,password) values('$username','$password')";
+    $result=mysqli_query($conn,$sql);
+
+    if($result){
+      echo "Data inserted successfully";
+    } else {
+      die(mysqli_error($conn));
+    }
+
 }
 
 ?>
