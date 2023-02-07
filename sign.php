@@ -11,8 +11,9 @@
     <title>Sign up page</title>
   </head>
   <body>
+      <h1 classe="text-center">Sign Up Page</h1>
       <div class="container mt-5">
-            <form>
+            <form action="sign.php" method="POST">
             <div class="form-group">
             <label for="exampleInputUsername1">Name</label>
                   <input type="text" class="form-control" placeholder="Enter your username" name="username">
