@@ -1,7 +1,8 @@
 <?php 
 
 $success = 0;
-$user = 1;
+$user = 0;
+$invalid = 0; 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     include "connect.php";
@@ -19,7 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } */
 
     $username = $_POST["username"];
-    $password = $_POST["password"]; 
+    $password = $_POST["password"];
+    $cpassword = $_POST["cpassword"];  
 
       $sql = "select * from `registration` where username='$username'";
       $result=mysqli_query($conn,$sql);
@@ -29,6 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                   // echo "User already on the database";
                   $user = 1; 
             }else {
+                  if($password===$cpassword){
                   $sql = "insert into `registration`(username,password) values('$username','$password')";
                   $result=mysqli_query($conn,$sql); 
 
@@ -37,9 +40,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                       $success = 1;
                       //when the user signs up successfully it redirecs to login
                       header('location:login.php');
-                  } else {
-                        die(mysqli_error($conn));
-                  }
+                  } 
+                } else $invalid = 1; 
             }
       }    
 
@@ -73,6 +75,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   ?>
 
+<?php
+
+    if($user) {
+      // this is a bootstrap alert for the user already inserted into the database
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Sorry, </strong>the password does not match.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>'; 
+    }
+
+  ?>
+
   <?php 
 
     if($success) {
@@ -95,6 +109,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" placeholder="Enter your password" name="password">
             </div>
+
+            <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Confirm password" name="cpassword">
+            </div>
+
             <button type="submit" class="btn btn-primary w-100">Sign up</button>
 </form>
       </div>
