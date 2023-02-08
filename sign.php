@@ -3,7 +3,7 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     include "connect.php";
 
-    $username = $_POST["username"];
+   /*  $username = $_POST["username"];
     $password = $_POST["password"];
 
     $sql = "insert into `registration`(username,password) values('$username','$password')";
@@ -13,7 +13,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "Data inserted successfully";
     } else {
       die(mysqli_error($conn));
-    }
+    } */
+
+      $sql = "select = from `registration` where username='$username'";
+      $result=mysqli_query($conn,$sql);
+      if($result){
+            $num=mysqli_num_rows($result);
+            if($num > 0){
+                  echo "User already on the database"; 
+            }else {
+                  $sql = "insert into `registration`(username,password) values('$username','$password')";
+                  $result=mysqli_query($conn,$sql); 
+
+                  if($result){
+                        echo "Signup Successfully";
+                  } else {
+                        die(mysqli_error($conn));
+                  }
+            }
+      }    
 
 }
 
