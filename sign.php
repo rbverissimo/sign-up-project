@@ -35,6 +35,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                   if($result){
                       //  echo "Signup Successfully";
                       $success = 1;
+                      //when the user signs up successfully it redirecs to login
+                      header('location:login.php');
                   } else {
                         die(mysqli_error($conn));
                   }
