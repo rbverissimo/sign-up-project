@@ -15,8 +15,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $num=mysqli_num_rows($result);
             if($num > 0){
                   $login = 1;
+                  //the session must be initalized
                   session_start();
                   $_SESSION['username']=$username;
+                  //the user will redirected to another page
                   header('location:home.php');
             }else {
                   $invalid = 1;

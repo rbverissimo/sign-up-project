@@ -20,7 +20,10 @@ if(!isset($_SESSION['username'])){
 <title>Welcome page</title>
 </head>
 <body>
-<h1>Hello <?php echo $_SESSION['username']; ?></h1>
+<h1 class="text-center mt-5">Hello <?php echo $_SESSION['username']; ?></h1>
+<div class="container">
+      <a href="logout.php" class="btn btn-primary mt-5">Logout</a>
+</div>
 
 
 </body>
