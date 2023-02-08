@@ -1,5 +1,8 @@
 <?php 
 
+$success = 0;
+$user = 1;
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     include "connect.php";
 
@@ -15,18 +18,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       die(mysqli_error($conn));
     } */
 
-      $sql = "select = from `registration` where username='$username'";
+    $username = $_POST["username"];
+    $password = $_POST["password"]; 
+
+      $sql = "select * from `registration` where username='$username'";
       $result=mysqli_query($conn,$sql);
       if($result){
             $num=mysqli_num_rows($result);
             if($num > 0){
-                  echo "User already on the database"; 
+                  // echo "User already on the database";
+                  $user = 1; 
             }else {
                   $sql = "insert into `registration`(username,password) values('$username','$password')";
                   $result=mysqli_query($conn,$sql); 
 
                   if($result){
-                        echo "Signup Successfully";
+                      //  echo "Signup Successfully";
+                      $success = 1;
                   } else {
                         die(mysqli_error($conn));
                   }
@@ -50,6 +58,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Sign up page</title>
   </head>
   <body>
+
+  <?php 
+    if($user) {
+      echo ""; 
+    }
+
+  ?>
       <h1 classe="text-center">Sign Up Page</h1>
       <div class="container mt-5">
             <form action="sign.php" method="POST">
