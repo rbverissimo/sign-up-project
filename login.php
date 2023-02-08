@@ -1,7 +1,7 @@
 <?php 
 
-$success = 0;
-$user = 0;
+$login = 0;
+$invalid = 0;
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     include "connect.php";
@@ -14,12 +14,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       if($result){
             $num=mysqli_num_rows($result);
             if($num > 0){
-                  echo "Login succesful";
+                  $login = 1;
             }else {
-                  echo "Invalid username or password"; 
+                  $invalid = 1;
             }
       }    
-
 }
 
 ?>
@@ -37,6 +36,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
   </head>
   <body>
+  <?php 
+
+    if($login) {
+      // this is a bootstrap alert for success
+      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hi, </strong> you are now logged in! 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>'; 
+    }
+
+  ?>
+
+      
+  <?php if($invalid){
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Sorry, </strong> invalid username or password.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }
+  ?>
 
       <h1 class="text-center">Login to our website</h1>
       <div class="container mt-5">
