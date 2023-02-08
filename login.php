@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
   <body>
 
-      <h1 classe="text-center">Login to our website</h1>
+      <h1 class="text-center">Login to our website</h1>
       <div class="container mt-5">
             <form action="login.php" method="POST">
             <div class="form-group">
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" placeholder="Enter your password" name="password">
             </div>
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <button type="submit" class="btn btn-primary w-100">Log in</button>
 </form>
       </div>
 </body>
