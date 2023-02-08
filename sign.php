@@ -60,8 +60,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
 
   <?php 
+
     if($user) {
-      echo ""; 
+      // this is a bootstrap alert for the user already inserted into the database
+      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Sorry, </strong>the username you are trying to register already exists.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>'; 
+    }
+
+  ?>
+
+  <?php 
+
+    if($success) {
+      // this is a bootstrap alert for success
+      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hi, </strong> you are now signed up! 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>'; 
     }
 
   ?>
